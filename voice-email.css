@@ -15,25 +15,60 @@ div{
 body{
     margin: 0px;
 }
+#navigation{
+    margin-left:-12px;
+}
+
 .nav-item{
     border-bottom: 1px solid #FFF;
-    background-color: #2A3132;
-    color: #FFF; 
+    background-color: #f1f1f2;
+    color: #000; 
 }
 .btn{
     width: 70%;
 }
-#body{
-    margin-top: 15px;
-}
+
 .nav-link{
-    color: #FFF !important;
+    color: #000 ;
     cursor: pointer;
 }
+
 #header{
-    background: #763626;
-    color: #FFF !important;
+    background: #f1f1f2;
+    color: #000 ;
+    border-bottom: 2px black solid;
 }
 .invert{
     filter: invert(100);
+    color: #000;
+}
+#all{
+    font-size: 11px;
+}
+
+.unread{
+    font-weight: bolder;
+
+}
+.active{
+    background: #EB8A44;
+    color:black; 
+}
+#email-body{
+    background: #2D4263;
+    color:white;
+    margin-left:12px;
+    margin-top:5px;
+
+}
+.email-each{
+    border-bottom: 0.5px solid black;
+}
+.email-each:hover{
+    background: #2A3132;
+    color: #FFF;
+}
+.vision-control:hover{
+    background: #000;
+    color: #FFF;
 }

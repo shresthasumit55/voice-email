@@ -10,9 +10,9 @@
     <div class="container" id="main">
         <div class="row" id="header">
             <div class="col-3 align-left" >
-               <div id="switch"><a class="nav-link"> <i class="fas fa-toggle-on"></i> Switch  Color Mode </a></div>
-               <a class="nav-link"> <i class="fas fa-plus"></i> Increase Font </a>
-               <a class="nav-link"> <i class="fas fa-minus"></i>  Descrese Font</a>
+               <div id="switch" class="vision-control"><a class="nav-link"> <i class="fas fa-toggle-on"></i> Switch  Color Mode </a></div>
+               <div id="btnInc"class="vision-control"><a class="nav-link"> <i class="fas fa-plus"></i> Increase Font </a></div>
+               <div id="btnDec"class="vision-control"> <a class="nav-link"> <i class="fas fa-minus"></i>  Descrese Font</a></div>
             </div>
             <div class="col-5 align-center">
                 <h1> Voice Email </h1> 
@@ -32,9 +32,9 @@
             <div class="col-2 "  id="navigation">
                 <ul class="nav flex-column ">
                     <li class="nav-item">
-                        <a class="nav-link active" href="#"><i class="fa fa-plus-circle"></i> Compose</a>
+                        <a class="nav-link " href="#"><i class="fa fa-plus-circle"></i> Compose</a>
                       </li>
-                      <li class="nav-item">
+                      <li class="nav-item active">
                         <a class="nav-link" href="#"><i class="fa fa-inbox"></i> Inbox</a>
                       </li>
                       <li class="nav-item">
@@ -52,7 +52,34 @@
                 </ul>
             </div>
             <div class="col-10" id="email-body">
-                Here Goes our body 
+                <div class="row">
+                  <div class="col" id="emailList">
+                    <div class="row email-each unread">
+                      <div class="col new-email-badge"><span class="badge badge-danger">New</span></div>
+                      <div class="col-3" id="email-from"> sanjelarun@gmail.com</div>
+                      <div class="col-5" id="email-subject"> Hello World -- Email Body</div>
+                      <div class="col-3" id="email-date">August 5, 2019 -- Date</div>
+                    </div>
+                    <div class="row email-each">
+                        <div class="col new-email-badge"><span class="badge badge-secondary">New</span></div>
+                        <div class="col-3" id="email-from"> sender email or name</div>
+                        <div class="col-5" id="email-subject"> Email Subject / Email Body</div>
+                        <div class="col-3" id="email-date">August 5, 2019  --  Date</div>
+                    </div>
+                    <div class="row email-each">
+                        <div class="col new-email-badge"><span class="badge badge-secondary">New</span></div>
+                        <div class="col-3" id="email-from"> sender email or name</div>
+                        <div class="col-5" id="email-subject"> Email Subject / Email Body</div>
+                        <div class="col-3" id="email-date">August 5, 2019  --  Date</div>
+                    </div>
+                    <div class="row email-each">
+                        <div class="col new-email-badge"><span class="badge badge-secondary">New</span></div>
+                        <div class="col-3" id="email-from"> sender email or name</div>
+                        <div class="col-5" id="email-subject"> Email Subject / Email Body</div>
+                        <div class="col-3" id="email-date">August 5, 2019  --  Date</div>
+                    </div>
+                  </div>
+                </div>
             </div>
         </div>        
     </div>
