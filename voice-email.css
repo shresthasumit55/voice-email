@@ -1,0 +1,39 @@
+.align-center{
+    text-align: left;
+}
+.align-center{
+    text-align: center;
+   
+}
+.align-right{
+    text-align: right;
+   
+}
+div{
+    border: 0px solid black;
+}
+body{
+    margin: 0px;
+}
+.nav-item{
+    border-bottom: 1px solid #FFF;
+    background-color: #2A3132;
+    color: #FFF; 
+}
+.btn{
+    width: 70%;
+}
+#body{
+    margin-top: 15px;
+}
+.nav-link{
+    color: #FFF !important;
+    cursor: pointer;
+}
+#header{
+    background: #763626;
+    color: #FFF !important;
+}
+.invert{
+    filter: invert(100);
+}
