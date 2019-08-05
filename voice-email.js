@@ -12,17 +12,26 @@ $("#switch").click(function(){
 
 $("#btnInc").click(function(){
 	var fontSize = parseInt($("#main").css("font-size"));
-	var fontSize2 = parseInt($(".tabButtons").css("font-size"))
+    var width = parseInt($(".logo").css("width"));
+    var height = parseInt($(".logo").css("height"));
 	fontSize = fontSize + 1 + "px";
-	
+    width = (width < 210) ? width + 5 + "px" : "210px";
+    height =(height < 210) ? height + 5 + "px" : "210px";
 	$("#main").css({'font-size':fontSize});
-	
+    $(".logo").css({'width':width});
+    $(".logo").css({'height':height});
 });
 
 $("#btnDec").click(function(){
 	var fontSize = parseInt($("#main").css("font-size"));
+	var width = parseInt($(".logo").css("width"));
+    var height = parseInt($(".logo").css("height"));
 	fontSize = fontSize - 1 + "px";
-	$("#main").css({'font-size':fontSize});
+    width = (width >70) ? width -5 + "px" : "70px";
+    height =(height > 70) ? height - 5 + "px" : "70px";
+    $("#main").css({'font-size':fontSize});
+    $(".logo").css({'width':width});
+    $(".logo").css({'height':height});
 	
 });
 
