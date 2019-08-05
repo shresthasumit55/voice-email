@@ -16,7 +16,7 @@ body{
     margin: 0px;
 }
 #navigation{
-    margin-left:-12px;
+    margin-left:-13px;
 }
 
 .nav-item{
@@ -47,9 +47,11 @@ body{
     color: #000;
 }
 #all{
-    font-size: 11px;
+    font-size: 12px;
 }
-
+.microphone:hover{
+    color:red;
+}
 .unread{
     font-weight: bolder;
 
