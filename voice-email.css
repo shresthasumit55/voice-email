@@ -32,6 +32,10 @@ body{
     color: #000 ;
     cursor: pointer;
 }
+.nav-link:hover{
+    color:whitesmoke;
+    background: black;
+}
 
 #header{
     background: #f1f1f2;
