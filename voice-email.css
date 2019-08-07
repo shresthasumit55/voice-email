@@ -82,3 +82,16 @@ body{
     width: 120px;
     height: 120px;
 }
+
+.email-read-body{
+    border: 1px solid #2D4263;
+    width: auto;
+}
+.btn-link{
+    color:black;
+    width:auto;
+}
+#readMail{
+    background: #f1f1f2 !important;
+    color: #000 !important;   
+}

@@ -3,7 +3,7 @@ var emailDetailedList=[{
     "sender": "mark_one@gmail.com",
     "cc":[],
     "bcc":[],
-    "read": true,
+    "read": false,
     "subject": "Meeting rescheduled",
     "body": "Hi, \
     The meeting has been cancelled. You will be notified about further changes.\
@@ -76,14 +76,12 @@ $("#btnDec").click(function(){
 });
 
 $(document).ready(function(){
-    // Hides all new badges
-    var noEmail = $(".new-email-badge");
-    addNew();
     $("#emailList").show();
     $("#sentScreen").hide();
     $("#trashScreen").hide();
     $("#composeScreen").hide();
-    
+    $("#readMail").hide();
+
 })
 
 $("#anchor-inbox").click(function () {
@@ -91,44 +89,80 @@ $("#anchor-inbox").click(function () {
     $("#sentScreen").hide();
     $("#trashScreen").hide();
     $("#composeScreen").hide();
+    $("#readMail").hide();
+   
     var emailListHtml="";
 
     emailDetailedList.forEach(element => {
-        emailListHtml+='<div class="row email-each unread" id="emailId'+element.id+'">\
-        <div class="col" ><span class="badge badge-danger new-email-badge">New</span></div>\
-        <div class="col-3" id="email-from"> '+element.sender+'</div>\
+        emailListHtml+='<div class="row email-each '; 
+        emailListHtml += (element.read)?'"': 'unread"';
+       
+        emailListHtml += 'id="emailId'+element.id+'" onClick = "readEmail(this.id)">';
+        emailListHtml += '<div class="col"><span class="badge badge-danger new-email-badge">New</span></div>';
+        emailListHtml +='<div class="col-3" id="email-from"> '+element.sender+'</div>\
         <div class="col-5" id="email-subject">'+element.subject+' </div>\
         <div class="col-3" id="email-date">'+element.date+'</div>\
       </div>'
       });
     $( "#emailList" ).html( emailListHtml );
-
+    var noEmail = $(".new-email-badge").hide();
+    addNew();
 })
 
 $("#anchor-sent").click(function () {
     $("#emailList").hide();
     $("#sentScreen").show();
     $("#trashScreen").hide();
+    $("#readMail").hide();
     $("#composeScreen").hide();
 })
 $("#anchor-trash").click(function () {
     $("#emailList").hide();
     $("#sentScreen").hide();
     $("#trashScreen").show();
+    $("#readMail").hide();
     $("#composeScreen").hide();
 })
 $("#anchor-compose").click(function () {
     $("#emailList").hide();
     $("#sentScreen").hide();
     $("#trashScreen").hide();
+    $("#readMail").hide();
     $("#composeScreen").show();
 })
 // Adds "NEW" badge left of an unread email or new email 
 function addNew(){
-   var elements= $(".unread");
-   var newEmail = $(".new-email-badge");
-
+   var elements= $(".unread").find(".new-email-badge").show();   
 }
+function getId(str)
+{
+    return str.replace(/[^\d]+/, '');
+}
+function readEmail(id){
+
+    $("#emailList").hide();
+    $("#sentScreen").hide();
+    $("#trashScreen").hide();
+    $("#composeScreen").hide();
+    $("#readMail").show(); 
+    var emailId = getId(id)-1;
+    console.log(emailId);
+    var singleEmail = emailDetailedList[emailId];
+    var emailShow ="";
+    emailShow += '<div id ="openEmail" style="margin: 10px;">\
+    <h3> Subject: '+ singleEmail.subject +' </h3>\
+    From:<strong>'+singleEmail.sender+' </strong> on '+singleEmail.date+'\
+    <p>to me</p>\
+    <div class="col email-read-body">\
+    <p>\ '+singleEmail.body +'\
+        <div id="reply" class="col" style:"margin-top:20px;>\
+            <button type="button" class="btn btn-link"  id = "replyButton'+id+'"><i class="fas fa-reply"></i> Reply </button>\
+            <button type="button" class="btn btn-link" id = "forwardButton'+id+'"> <i class="fas fa-share-square"></i> Forward </button>\
+        </div></div></div>';
+    $("#readMail").html(emailShow);
+    singleEmail.read = true;
+
+};
 
 
 
