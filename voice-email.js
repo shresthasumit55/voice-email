@@ -130,6 +130,9 @@ $("#anchor-compose").click(function () {
     $("#readMail").hide();
     $("#composeScreen").show();
 })
+$("#btnSendEmail").click(function () {
+    alert("email sent");
+})
 // Adds "NEW" badge left of an unread email or new email 
 function addNew(){
    var elements= $(".unread").find(".new-email-badge").show();   
@@ -144,9 +147,9 @@ function readEmail(id){
     $("#sentScreen").hide();
     $("#trashScreen").hide();
     $("#composeScreen").hide();
-    $("#readMail").show(); 
+    $("#readMail").show();
+    window.token = id; 
     var emailId = getId(id)-1;
-    console.log(emailId);
     var singleEmail = emailDetailedList[emailId];
     var emailShow ="";
     emailShow += '<div id ="openEmail" style="margin: 10px;">\
