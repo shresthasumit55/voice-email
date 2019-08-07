@@ -32,7 +32,9 @@
                 </div>
               </div>
                   <div class="row" style="float: right; margin-right: 20px; margin-top:20px;">
-                    <div clas="col" class="microphone"><i class="fa fa-microphone"></i> "Hey! Press Me" </div>
+                    <div clas="col" class="microphone" id="mic-on-btn"><i class="fa fa-microphone"></i> "Hey! Press Me" </div>
+                  
+                    <div class="col">Mode: <label id="labelMode">Command</label></div>
                     </div>
                     
             </div>
@@ -41,22 +43,22 @@
             <div class="col-2 "  id="navigation">
                 <ul class="nav flex-column ">
                     <li class="nav-item">
-                        <a class="nav-link " href="#"><i class="fa fa-plus-circle"></i> Compose</a>
+                        <a id="anchor-compose" class="nav-link " href="#"><i class="fa fa-plus-circle"></i> Compose</a>
                       </li>
                       <li class="nav-item active">
-                        <a class="nav-link" href="#"><i class="fa fa-inbox"></i> Inbox</a>
+                        <a id="anchor-inbox" class="nav-link" href="#"><i class="fa fa-inbox"></i> Inbox</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fa fa-location-arrow"></i> Sent</a>
+                        <a id="anchor-sent" class="nav-link" href="#"><i class="fa fa-location-arrow"></i> Sent</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fa fa-trash"></i> Trash</button></a>
+                        <a id="anchor-trash" class="nav-link" href="#"><i class="fa fa-trash"></i> Trash</button></a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fa fa-file"></i> Draft</button></a>
+                        <a id="anchor-draft" class="nav-link" href="#"><i class="fa fa-file"></i> Draft</button></a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fa fa-hand-pointer"></i> Menu Item</button></a>
+                        <a id="anchor-menu" class="nav-link" href="#"><i class="fa fa-hand-pointer"></i> Menu Item</button></a>
                       </li>
                 </ul>
             </div>
@@ -88,6 +90,37 @@
                         <div class="col-3" id="email-date">August 5, 2019  --  Date</div>
                     </div>
                   </div>
+
+                  <div class="col" id="sentScreen">sent message</div>
+                  <div class="col" id="trashScreen">Trash screen</div>
+                  <div class="col" id="composeScreen">
+                    <div>
+                      <h5>New Message</h5>
+                      <div class="row">
+                        <div class="col-5"><label for="recipientInput">To:</label>
+                          <input id="recipientInput"></div>                      
+                    </div>
+                    <div class="row">
+                        <div class="col-5"><label for="subjectInput">Subject:</label>
+                        <input id="subjectInput"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-5"><label for="ccField">CC:</label>
+                        <input id="ccField"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-5">
+                            <label for="bccField">BCC:</label>
+                            <input id="bccField">
+                          </div>
+                    </div>
+                    <div>
+                        <textarea id="emailBodyArea" placeholder="Message" rows=10 cols=80></textarea>
+                    </div>
+                  </div>
+                    
+                    <button> Send </button>
+                  </div>
                 </div>
             </div>
         </div>        
@@ -100,6 +133,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>    
     <script src="all.js"></script>
     <script src="voice-email.js"></script>
+    <script src="speech.js"></script>
 </body>
 
 </html>

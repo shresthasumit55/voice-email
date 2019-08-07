@@ -38,13 +38,41 @@ $("#btnDec").click(function(){
 $(document).ready(function(){
     // Hides all new badges
     var noEmail = $(".new-email-badge");
-    console.log(noEmail.hide());
-    addNew(); 
+    addNew();
+    $("#emailList").show();
+    $("#sentScreen").hide();
+    $("#trashScreen").hide();
+    $("#composeScreen").hide();
+})
+
+$("#anchor-inbox").click(function () {
+    $("#emailList").show();
+    $("#sentScreen").hide();
+    $("#trashScreen").hide();
+    $("#composeScreen").hide();
+})
+
+$("#anchor-sent").click(function () {
+    $("#emailList").hide();
+    $("#sentScreen").show();
+    $("#trashScreen").hide();
+    $("#composeScreen").hide();
+})
+$("#anchor-trash").click(function () {
+    $("#emailList").hide();
+    $("#sentScreen").hide();
+    $("#trashScreen").show();
+    $("#composeScreen").hide();
+})
+$("#anchor-compose").click(function () {
+    $("#emailList").hide();
+    $("#sentScreen").hide();
+    $("#trashScreen").hide();
+    $("#composeScreen").show();
 })
 // Adds "NEW" badge left of an unread email or new email 
 function addNew(){
    var elements= $(".unread");
    var newEmail = $(".new-email-badge");
 
-    console.log(elements.find(newEmail).show());
 }
