@@ -1,3 +1,40 @@
+var emailList=[{
+    "id":1,
+    "sender": "mark_one@gmail.com",
+    "cc":[],
+    "bcc":[],
+    "subject": "Meeting rescheduled",
+    "body": "Hi, \
+    The meeting has been cancelled. You will be notified about further changes.\
+    Regards,\
+    Mark",
+    "date":"06-23-2019"
+  },
+  {
+    "id":2,
+    "sender": "mark_two@gmail.com",
+    "cc":[],
+    "bcc":[],
+    "subject": "Event postponed",
+    "body": "Hi,\
+    The event has been postponed to 8th July. You will be notified about further changes.\
+    Regards,\
+    Mark",
+    "date":"06-20-2019"
+  },
+  {
+    "id":3,
+    "sender": "mark_three@gmail.com",
+    "cc":[],
+    "bcc":[],
+    "subject": "project status",
+    "body": "Hi,\
+    Please meet with me by the end of the day to discuss the current status of the project.\
+    Regards,\
+    Mark",
+    "date":"06-13-2019"
+  }]
+
 mode = 0;
 $("#switch").click(function(){
     if (mode==0){
@@ -43,6 +80,7 @@ $(document).ready(function(){
     $("#sentScreen").hide();
     $("#trashScreen").hide();
     $("#composeScreen").hide();
+    
 })
 
 $("#anchor-inbox").click(function () {
@@ -76,3 +114,6 @@ function addNew(){
    var newEmail = $(".new-email-badge");
 
 }
+
+
+
