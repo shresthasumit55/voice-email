@@ -1,8 +1,9 @@
-var emailList=[{
+var emailDetailedList=[{
     "id":1,
     "sender": "mark_one@gmail.com",
     "cc":[],
     "bcc":[],
+    "read": true,
     "subject": "Meeting rescheduled",
     "body": "Hi, \
     The meeting has been cancelled. You will be notified about further changes.\
@@ -15,6 +16,7 @@ var emailList=[{
     "sender": "mark_two@gmail.com",
     "cc":[],
     "bcc":[],
+    "read":true,
     "subject": "Event postponed",
     "body": "Hi,\
     The event has been postponed to 8th July. You will be notified about further changes.\
@@ -27,6 +29,7 @@ var emailList=[{
     "sender": "mark_three@gmail.com",
     "cc":[],
     "bcc":[],
+    "read":true,
     "subject": "project status",
     "body": "Hi,\
     Please meet with me by the end of the day to discuss the current status of the project.\
@@ -88,6 +91,18 @@ $("#anchor-inbox").click(function () {
     $("#sentScreen").hide();
     $("#trashScreen").hide();
     $("#composeScreen").hide();
+    var emailListHtml="";
+
+    emailDetailedList.forEach(element => {
+        emailListHtml+='<div class="row email-each unread" id="emailId'+element.id+'">\
+        <div class="col" ><span class="badge badge-danger new-email-badge">New</span></div>\
+        <div class="col-3" id="email-from"> '+element.sender+'</div>\
+        <div class="col-5" id="email-subject">'+element.subject+' </div>\
+        <div class="col-3" id="email-date">'+element.date+'</div>\
+      </div>'
+      });
+    $( "#emailList" ).html( emailListHtml );
+
 })
 
 $("#anchor-sent").click(function () {
