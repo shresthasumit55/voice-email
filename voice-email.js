@@ -76,15 +76,17 @@ $("#btnDec").click(function(){
 });
 
 $(document).ready(function(){
-    $("#emailList").show();
+    $("#anchor-inbox").click();
     $("#sentScreen").hide();
     $("#trashScreen").hide();
     $("#composeScreen").hide();
     $("#readMail").hide();
 
-})
+});
 
 $("#anchor-inbox").click(function () {
+    var getActive = $(".active").removeClass('active');
+    $("#anchor-inbox").addClass("active");
     $("#emailList").show();
     $("#sentScreen").hide();
     $("#trashScreen").hide();
@@ -98,10 +100,10 @@ $("#anchor-inbox").click(function () {
         emailListHtml += (element.read)?'"': 'unread"';
        
         emailListHtml += 'id="emailId'+element.id+'" onClick = "readEmail(this.id)">';
-        emailListHtml += '<div class="col"><span class="badge badge-danger new-email-badge">New</span></div>';
-        emailListHtml +='<div class="col-3" id="email-from"> '+element.sender+'</div>\
-        <div class="col-5" id="email-subject">'+element.subject+' </div>\
-        <div class="col-3" id="email-date">'+element.date+'</div>\
+        emailListHtml += '<div class="col width-5"><span class="badge badge-danger new-email-badge">New</span></div>';
+        emailListHtml +='<div class="col width-30 align-center" id="email-from"> '+element.sender+'</div>\
+        <div class="col width-40 align-center" id="email-subject">'+element.subject+' </div>\
+        <div class="col width-20" id="email-date">'+element.date+'</div>\
       </div>'
       });
     $( "#emailList" ).html( emailListHtml );
@@ -110,6 +112,8 @@ $("#anchor-inbox").click(function () {
 })
 
 $("#anchor-sent").click(function () {
+    var getActive = $(".active").removeClass('active');
+    $("#anchor-sent").addClass("active");
     $("#emailList").hide();
     $("#sentScreen").show();
     $("#trashScreen").hide();
@@ -117,6 +121,8 @@ $("#anchor-sent").click(function () {
     $("#composeScreen").hide();
 })
 $("#anchor-trash").click(function () {
+    var getActive = $(".active").removeClass('active');
+    $("#anchor-trash").addClass("active");
     $("#emailList").hide();
     $("#sentScreen").hide();
     $("#trashScreen").show();
@@ -124,6 +130,8 @@ $("#anchor-trash").click(function () {
     $("#composeScreen").hide();
 })
 $("#anchor-compose").click(function () {
+    var getActive = $(".active").removeClass('active');
+    $("#anchor-compose").addClass("active");
     $("#emailList").hide();
     $("#sentScreen").hide();
     $("#trashScreen").hide();
