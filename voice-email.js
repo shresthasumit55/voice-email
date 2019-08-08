@@ -161,6 +161,7 @@ function readEmail(id){
     var singleEmail = emailDetailedList[emailId];
     var emailShow ="";
     emailShow += '<div id ="openEmail" style="margin: 10px;">\
+    <button id="stopBtn" style="display: none;" onClick="cancelSpeech()">Stop Reading</button>\
     <h3> Subject: '+ singleEmail.subject +' </h3>\
     From:<strong>'+singleEmail.sender+' </strong> on '+singleEmail.date+'\
     <p>to me</p>\

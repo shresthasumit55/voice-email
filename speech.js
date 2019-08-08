@@ -1,8 +1,8 @@
-var navMenuMappings = {"inbox":"anchor-inbox", "trash":"anchor-trash", "sent":"anchor-sent", "compose":"anchor-compose"}
+var navMenuMappings = {"inbox":"anchor-inbox", "trash":"anchor-trash", "sent":"anchor-sent", "send":"anchor-sent","compose":"anchor-compose", "stop":"stopBtn"}
 var voiceModes = {"navigation":1, "writer_command":2, "text_entry":3, "read_command":4}
 Object.freeze(voiceModes)
-var writerMenu = {"enter recipient":"recipientInput","enter subject":"subjectInput","start message":"emailBodyArea", "enter cc":"ccField"}
-var sendCommand = "send email"
+var writerMenu = {"enter recipient":"recipientInput","enter receiver":"recipientInput","enter subject":"subjectInput","start message":"emailBodyArea", "enter cc":"ccField", "enter bcc":"bccField"}
+var sendCommand = ["send email","send mail", "send the mail", "send the email"]
 var currentVoiceMode = voiceModes.navigation;
 var activeUIComponent="";
 var endOfSectionText = "over over"
@@ -40,11 +40,10 @@ var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
 
     }
     else if(currentVoiceMode==voiceModes.writer_command){
-      debugger
     for (var i = event.resultIndex; i < event.results.length; ++i) {
       if (event.results[i].isFinal) {
         var command= event.results[i][0].transcript.trim();
-        if (command=="send mail"){
+        if (sendCommand.includes[command]){
           $('#btnSendEmail').trigger('click');
         }
         else if (command in writerMenu){
@@ -53,6 +52,10 @@ var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
             activeUIComponent = writerMenu[command];
             $('#'+activeUIComponent).focus();
         }
+        else if (command in navMenuMappings){
+          currentVoiceMode = voiceModes.navigation;
+          $('#'+navMenuMappings[command]).trigger('click');
+      }
       }
     }
 }
@@ -61,7 +64,6 @@ else if(currentVoiceMode==voiceModes.text_entry){
     for (var i = event.resultIndex; i < event.results.length; ++i) {
       if (event.results[i].isFinal) {
         var spokenText= event.results[i][0].transcript.trim();
-        //debugger
         if (spokenText==endOfSectionText){
             currentVoiceMode = voiceModes.writer_command;
             $('#labelMode').text("Command");
@@ -91,8 +93,10 @@ else if(currentVoiceMode==voiceModes.text_entry){
   }
 
   function startRecord(){
+      if(!recognizing){
       recognition.start()
       recognizing = true;
+      }
   }
 
   function stopRecord(){
@@ -104,7 +108,6 @@ else if(currentVoiceMode==voiceModes.text_entry){
     id=Number(id)
     emailDetailedList.forEach(item =>{
       if(item.id==id){
-      debugger
       currentEmail = item;
       return
       }
@@ -114,11 +117,11 @@ else if(currentVoiceMode==voiceModes.text_entry){
   function narrateEmail(email){
     var msg = new SpeechSynthesisUtterance();
     var voices = window.speechSynthesis.getVoices();
-    msg.voice = voices[4]; 
+    msg.voice = voices[2]; 
     
     msg.volume = 1; // 0 to 1
     msg.voiceURI = 'native';
-    msg.pitch = 2; //0 to 2
+    msg.pitch = 1; //0 to 2
     msg.rate = 1; // 0.1 to 10
     msg.lang = 'en-US';
     msg.text = email.body;
@@ -127,6 +130,10 @@ else if(currentVoiceMode==voiceModes.text_entry){
     console.log('Finished in ' + event.elapsedTime + ' seconds.');
   };
 
-  speechSynthesis.speak(msg);
+  speechSynthesis.speak(msg);  
 
+  }
+
+  function cancelSpeech(){
+    speechSynthesis.cancel()
   }
