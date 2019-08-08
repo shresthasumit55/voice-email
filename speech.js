@@ -2,10 +2,10 @@ var navMenuMappings = {"inbox":"anchor-inbox", "trash":"anchor-trash", "sent":"a
 var voiceModes = {"navigation":1, "writer_command":2, "text_entry":3, "read_command":4}
 Object.freeze(voiceModes)
 var writerMenu = {"enter recipient":"recipientInput","enter receiver":"recipientInput","enter subject":"subjectInput","start message":"emailBodyArea", "enter cc":"ccField", "enter bcc":"bccField"}
-var sendCommand = ["send email","send mail", "send the mail", "send the email"]
+var sendCommand = ["send email","send mail", "send the mail", "send the email", "sent email", "sent mail"]
 var currentVoiceMode = voiceModes.navigation;
 var activeUIComponent="";
-var endOfSectionText = "over over"
+var endOfSectionText = ["over over","out out"]
 var readEmailCommands = ["read","read email", "read the email", "read mail", "read the mail"]
 var currentEmail;
 
@@ -40,13 +40,16 @@ var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
 
     }
     else if(currentVoiceMode==voiceModes.writer_command){
+      debugger
     for (var i = event.resultIndex; i < event.results.length; ++i) {
       if (event.results[i].isFinal) {
         var command= event.results[i][0].transcript.trim();
+        command = command.toLowerCase();
         if (sendCommand.includes[command]){
           $('#btnSendEmail').trigger('click');
         }
         else if (command in writerMenu){
+            
             currentVoiceMode = voiceModes.text_entry;
             $('#labelMode').text("Text Entry");
             activeUIComponent = writerMenu[command];
@@ -61,10 +64,11 @@ var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
 }
 
 else if(currentVoiceMode==voiceModes.text_entry){
+  debugger
     for (var i = event.resultIndex; i < event.results.length; ++i) {
       if (event.results[i].isFinal) {
         var spokenText= event.results[i][0].transcript.trim();
-        if (spokenText==endOfSectionText){
+        if (endOfSectionText.includes(spokenText)){
             currentVoiceMode = voiceModes.writer_command;
             $('#labelMode').text("Command");
         }
