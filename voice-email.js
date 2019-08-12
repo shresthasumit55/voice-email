@@ -1,3 +1,9 @@
+var msg = new SpeechSynthesisUtterance();
+var voices = window.speechSynthesis.getVoices();
+msg.volume = 1; // 0 to 1
+msg.voiceURI = 'native';
+msg.voice = voices[2]; 
+msg.lang = 'en-US';
 var emailDetailedList=[{
     "id":1,
     "sender": "mark_one@gmail.com",
@@ -52,19 +58,19 @@ $("#switch").click(function(){
 });
 
 function speakMsg(message){
-    var msg = new SpeechSynthesisUtterance();
-    var voices = window.speechSynthesis.getVoices();
-    msg.voice = voices[2]; 
     
-   var voiceControl = parseInt($("#voiceControl").val());
-	var speedControl = parseFloat($("#speedControl").val());
-    msg.volume = 1; // 0 to 1
-    msg.voiceURI = 'native';
+	msg  = new SpeechSynthesisUtterance();
+	msg.volume = 1; // 0 to 1
+	msg.voiceURI = 'native';
+	msg.voice = voices[2]; 
+	msg.lang = 'en-US';
+    voiceControl = parseInt($("#voiceControl").val());
+	speedControl = parseFloat($("#speedControl").val());
     msg.pitch = voiceControl; //0 to 2
     msg.rate = speedControl; // 0.1 to 10
     msg.text = message;
 
-  speechSynthesis.speak(msg);  
+	speechSynthesis.speak(msg);  
 }
 $("#btnInc").click(function(){
     
@@ -77,7 +83,7 @@ $("#btnInc").click(function(){
 	$("#main").css({'font-size':fontSize});
     $(".logo").css({'width':width});
     $(".logo").css({'height':height});
-	speechSynthesis.cancel();
+	//speechSynthesis.cancel();
     speakMsg("Font size increased");
 });
 
@@ -92,7 +98,7 @@ $("#btnDec").click(function(){
     $("#main").css({'font-size':fontSize});
     $(".logo").css({'width':width});
     $(".logo").css({'height':height});
-	speechSynthesis.cancel();
+	//speechSynthesis.cancel();
 	speakMsg("Font size Decreased");
 });
 
@@ -130,8 +136,8 @@ $("#anchor-inbox").click(function () {
     $( "#emailList" ).html( emailListHtml );
     var noEmail = $(".new-email-badge").hide();
     addNew();
-	speechSynthesis.cancel();
-    speakMsg("Currently in inbox");
+	//speechSynthesis.cancel();
+    speakMsg(" Currently in Inbox");
 })
 
 $("#anchor-sent").click(function () {
@@ -142,8 +148,8 @@ $("#anchor-sent").click(function () {
     $("#trashScreen").hide();
     $("#readMail").hide();
     $("#composeScreen").hide();
-	speechSynthesis.cancel();
-    speakMsg("Sent Emails");
+	//speechSynthesis.cancel();
+    speakMsg("Currently in Sent Emails");
 })
 $("#anchor-trash").click(function () {
     var getActive = $(".active").removeClass('active');
@@ -153,8 +159,8 @@ $("#anchor-trash").click(function () {
     $("#trashScreen").show();
     $("#readMail").hide();
     $("#composeScreen").hide();
-	speechSynthesis.cancel();
-    speakMsg("Switched to trash.");
+	//speechSynthesis.cancel();
+    speakMsg("Currently in to trash.");
 })
 $("#anchor-compose").click(function () {    
     var getActive = $(".active").removeClass('active');
@@ -164,7 +170,7 @@ $("#anchor-compose").click(function () {
     $("#trashScreen").hide();
     $("#readMail").hide();
     $("#composeScreen").show();
-	speechSynthesis.cancel();
+	//speechSynthesis.cancel();
     speakMsg("Compose a new email.");
 })
 $("#btnSendEmail").click(function () {
