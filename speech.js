@@ -151,10 +151,7 @@ else if(currentVoiceMode==voiceModes.text_entry){
   speechSynthesis.speak(msg);  
 
   }
-//TODO: Stop reading email after stop command 
-  function stopReading(){
-
-  }
+  
   function cancelSpeech(){
     speechSynthesis.cancel()
   }
