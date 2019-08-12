@@ -77,6 +77,7 @@ $("#btnInc").click(function(){
 	$("#main").css({'font-size':fontSize});
     $(".logo").css({'width':width});
     $(".logo").css({'height':height});
+	speechSynthesis.cancel();
     speakMsg("Font size increased");
 });
 
@@ -91,6 +92,7 @@ $("#btnDec").click(function(){
     $("#main").css({'font-size':fontSize});
     $(".logo").css({'width':width});
     $(".logo").css({'height':height});
+	speechSynthesis.cancel();
 	speakMsg("Font size Decreased");
 });
 
@@ -128,6 +130,7 @@ $("#anchor-inbox").click(function () {
     $( "#emailList" ).html( emailListHtml );
     var noEmail = $(".new-email-badge").hide();
     addNew();
+	speechSynthesis.cancel();
     speakMsg("Currently in inbox");
 })
 
@@ -139,6 +142,7 @@ $("#anchor-sent").click(function () {
     $("#trashScreen").hide();
     $("#readMail").hide();
     $("#composeScreen").hide();
+	speechSynthesis.cancel();
     speakMsg("Sent Emails");
 })
 $("#anchor-trash").click(function () {
@@ -149,6 +153,7 @@ $("#anchor-trash").click(function () {
     $("#trashScreen").show();
     $("#readMail").hide();
     $("#composeScreen").hide();
+	speechSynthesis.cancel();
     speakMsg("Switched to trash.");
 })
 $("#anchor-compose").click(function () {    
@@ -159,7 +164,8 @@ $("#anchor-compose").click(function () {
     $("#trashScreen").hide();
     $("#readMail").hide();
     $("#composeScreen").show();
-    speakMsg("Compose a new email. Use predefined commands");
+	speechSynthesis.cancel();
+    speakMsg("Compose a new email.");
 })
 $("#btnSendEmail").click(function () {
     alert("email sent");
@@ -199,18 +205,23 @@ function readEmail(id){
     speakMsg("Email from " +singleEmail.sender+ ", Subject" + singleEmail.subject);
 };
 $("#recipientInput").focus(function(){
+	speechSynthesis.cancel();
     speakMsg("Please provide your sender email here");
 });
 $("#subjectInput").focus(function(){
+	speechSynthesis.cancel();
     speakMsg("Please provide subject of your email");
 });
 $("#ccField").focus(function(){
+	speechSynthesis.cancel();
     speakMsg("Any CC of email goes here");
 });
 $("#bccField").focus(function(){
+	speechSynthesis.cancel();
     speakMsg("Any BCC of email goes here");
 });
 $("#emailBodyArea").focus(function(){
+	speechSynthesis.cancel();
     speakMsg("Email body. Please say your message.");
 });
 
