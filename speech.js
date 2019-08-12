@@ -7,9 +7,12 @@ var currentVoiceMode = voiceModes.navigation;
 var activeUIComponent="";
 var endOfSectionText = ["over over","out out"]
 var readEmailCommands = ["read","read email", "read the email", "read mail", "read the mail"]
+var backCommands = ["back back"]
 var currentEmail;
-
+var previousTranscript=""; // this variables holds the transcript before the last change was added
 var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
+var specialSymbols = {"at at":"@", "comma comma ":",","question question":"?", "pling pling":"!", "dollar dollar":"$"}
+var bodyText=[];
 
   var recognizing;
   var recognition = new SpeechRecognition();
@@ -30,9 +33,11 @@ var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
             $('#'+navMenuMappings[command]).trigger('click');
         }
         else if (readEmailCommands.includes(command)){
-          findEmail(window.token.replace(/[^\d]+/, ''));
-          
+          findEmail(window.token.replace(/[^\d]+/, ''));          
           narrateEmail(currentEmail)
+        }
+        else if(command=="reply"){
+          replyMail()
         }
 
       }
@@ -72,9 +77,16 @@ else if(currentVoiceMode==voiceModes.text_entry){
             currentVoiceMode = voiceModes.writer_command;
             $('#labelMode').text("Command");
         }
+        else if (backCommands.includes(spokenText)){
+          var body = bodyText.pop().join(' ');
+          $('#'+activeUIComponent).val();
+        }
         else {
         var text = $('#'+activeUIComponent).val();
-        $('#'+activeUIComponent).val(text+" "+spokenText);
+        bodyText.push(spokenText)
+        previousTranscript = text;
+
+        $('#'+activeUIComponent).val(bodyText.join(' '));
         }
       }
     }
@@ -140,4 +152,17 @@ else if(currentVoiceMode==voiceModes.text_entry){
 
   function cancelSpeech(){
     speechSynthesis.cancel()
+  }
+
+  function replyMail(){
+    var getActive = $(".active").removeClass('active');
+    $("#anchor-compose").addClass("active");
+    $("#emailList").hide();
+    $("#sentScreen").hide();
+    $("#trashScreen").hide();
+    $("#readMail").hide();
+    $("#composeScreen").show();
+    findEmail(window.token.replace(/[^\d]+/, ''));
+    $("#recipientInput").val(currentEmail.sender);
+    $("#subjectInput").val("RE: "+currentEmail.subject);
   }

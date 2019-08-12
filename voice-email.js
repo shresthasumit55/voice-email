@@ -168,7 +168,7 @@ function readEmail(id){
     <div class="col email-read-body">\
     <p>\ '+singleEmail.body +'\
         <div id="reply" class="col" style:"margin-top:20px;>\
-            <button type="button" class="btn btn-link"  id = "replyButton'+id+'"><i class="fas fa-reply"></i> Reply </button>\
+            <button type="button" onClick = "replyMail()" class="btn btn-link"  id = "replyButton'+id+'"><i class="fas fa-reply"></i> Reply </button>\
             <button type="button" class="btn btn-link" id = "forwardButton'+id+'"> <i class="fas fa-share-square"></i> Forward </button>\
         </div></div></div>';
     $("#readMail").html(emailShow);
