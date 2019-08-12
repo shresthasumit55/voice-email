@@ -48,9 +48,25 @@ $("#switch").click(function(){
         $("body").removeClass("invert");
         mode = 0;
     }
+    speakMsg("Color Mode Switched");
 });
 
+function speakMsg(message){
+    var msg = new SpeechSynthesisUtterance();
+    var voices = window.speechSynthesis.getVoices();
+    msg.voice = voices[2]; 
+    
+    msg.volume = 1; // 0 to 1
+    msg.voiceURI = 'native';
+    msg.pitch = 1; //0 to 2
+    msg.rate = 1; // 0.1 to 10
+    msg.lang = 'en-US';
+    msg.text = message;
+
+  speechSynthesis.speak(msg);  
+}
 $("#btnInc").click(function(){
+    
 	var fontSize = parseInt($("#main").css("font-size"));
     var width = parseInt($(".logo").css("width"));
     var height = parseInt($(".logo").css("height"));
@@ -60,9 +76,11 @@ $("#btnInc").click(function(){
 	$("#main").css({'font-size':fontSize});
     $(".logo").css({'width':width});
     $(".logo").css({'height':height});
+    speakMsg("Font size increased");
 });
 
 $("#btnDec").click(function(){
+    
 	var fontSize = parseInt($("#main").css("font-size"));
 	var width = parseInt($(".logo").css("width"));
     var height = parseInt($(".logo").css("height"));
@@ -72,7 +90,7 @@ $("#btnDec").click(function(){
     $("#main").css({'font-size':fontSize});
     $(".logo").css({'width':width});
     $(".logo").css({'height':height});
-	
+	speakMsg("Font size Decreased");
 });
 
 $(document).ready(function(){
@@ -109,6 +127,7 @@ $("#anchor-inbox").click(function () {
     $( "#emailList" ).html( emailListHtml );
     var noEmail = $(".new-email-badge").hide();
     addNew();
+    speakMsg("Currently in inbox");
 })
 
 $("#anchor-sent").click(function () {
@@ -119,6 +138,7 @@ $("#anchor-sent").click(function () {
     $("#trashScreen").hide();
     $("#readMail").hide();
     $("#composeScreen").hide();
+    speakMsg("Sent Emails");
 })
 $("#anchor-trash").click(function () {
     var getActive = $(".active").removeClass('active');
@@ -128,8 +148,9 @@ $("#anchor-trash").click(function () {
     $("#trashScreen").show();
     $("#readMail").hide();
     $("#composeScreen").hide();
+    speakMsg("Switched to trash.");
 })
-$("#anchor-compose").click(function () {
+$("#anchor-compose").click(function () {    
     var getActive = $(".active").removeClass('active');
     $("#anchor-compose").addClass("active");
     $("#emailList").hide();
@@ -137,6 +158,7 @@ $("#anchor-compose").click(function () {
     $("#trashScreen").hide();
     $("#readMail").hide();
     $("#composeScreen").show();
+    speakMsg("Compose a new email. Use predefined commands");
 })
 $("#btnSendEmail").click(function () {
     alert("email sent");
@@ -150,7 +172,7 @@ function getId(str)
     return str.replace(/[^\d]+/, '');
 }
 function readEmail(id){
-
+    
     $("#emailList").hide();
     $("#sentScreen").hide();
     $("#trashScreen").hide();
@@ -173,8 +195,24 @@ function readEmail(id){
         </div></div></div>';
     $("#readMail").html(emailShow);
     singleEmail.read = true;
-
+    speakMsg("Email from " +singleEmail.sender+ ", Subject" + singleEmail.subject);
 };
+$("#recipientInput").focus(function(){
+    speakMsg("Please provide your sender email here");
+});
+$("#subjectInput").focus(function(){
+    speakMsg("Please provide subject of your email");
+});
+$("#ccField").focus(function(){
+    speakMsg("Any CC of email goes here");
+});
+$("#bccField").focus(function(){
+    speakMsg("Any BCC of email goes here");
+});
+$("#emailBodyArea").focus(function(){
+    speakMsg("Email body. Please say your message.");
+});
+
 
 
 

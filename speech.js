@@ -5,9 +5,11 @@ var writerMenu = {"enter recipient":"recipientInput","enter receiver":"recipient
 var sendCommand = ["send email","send mail", "send the mail", "send the email", "sent email", "sent mail"]
 var currentVoiceMode = voiceModes.navigation;
 var activeUIComponent="";
-var endOfSectionText = ["over over","out out"]
-var readEmailCommands = ["read","read email", "read the email", "read mail", "read the mail"]
-var backCommands = ["back back"]
+var endOfSectionText = ["over over","out out"];
+var readEmailCommands = ["read","read email", "read the email", "read mail", "read the mail"];
+var backCommands = ["back back"];
+var readInput = ["read input"];
+var stopReading = ["stop","stop reading"];
 var currentEmail;
 var previousTranscript=""; // this variables holds the transcript before the last change was added
 var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
@@ -149,7 +151,10 @@ else if(currentVoiceMode==voiceModes.text_entry){
   speechSynthesis.speak(msg);  
 
   }
+//TODO: Stop reading email after stop command 
+  function stopReading(){
 
+  }
   function cancelSpeech(){
     speechSynthesis.cancel()
   }
@@ -165,4 +170,9 @@ else if(currentVoiceMode==voiceModes.text_entry){
     findEmail(window.token.replace(/[^\d]+/, ''));
     $("#recipientInput").val(currentEmail.sender);
     $("#subjectInput").val("RE: "+currentEmail.subject);
+  }
+  // Run this command when User says "READ MY INPUT"
+  function provideFeedback(){ 
+    var inputText =  $(":focus").val();
+    speakMsg(inputText);
   }
