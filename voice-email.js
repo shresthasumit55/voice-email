@@ -56,11 +56,12 @@ function speakMsg(message){
     var voices = window.speechSynthesis.getVoices();
     msg.voice = voices[2]; 
     
+   var voiceControl = parseInt($("#voiceControl").val());
+	var speedControl = parseFloat($("#speedControl").val());
     msg.volume = 1; // 0 to 1
     msg.voiceURI = 'native';
-    msg.pitch = 1; //0 to 2
-    msg.rate = 1; // 0.1 to 10
-    msg.lang = 'en-US';
+    msg.pitch = voiceControl; //0 to 2
+    msg.rate = speedControl; // 0.1 to 10
     msg.text = message;
 
   speechSynthesis.speak(msg);  

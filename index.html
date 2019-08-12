@@ -21,7 +21,7 @@
             </div>
             <div class="col-4 align-right">
               <div class="row">
-                <div class="col">
+                <!--<div class="col">
                 <form class="form-inline" style="float: right; margin-top:15px;">
                     <div class="input-group align-center">
                       <div class="input-group-prepend align-center">
@@ -30,13 +30,32 @@
                       <input type="text" class="form-control" placeholder="Search" aria-label="Search bar" aria-describedby="basic-addon1">
                     </div>
                   </form>
-                </div>
-                <!--
+                </div>-->
+                
                 <div class="col" style = 'margin-top: 15px;'>
-                  <button class="btn btn-danger" id="authorize_button" style="display: none;"><i class="fab fa-google"></i> Sign in</button>
-                  <button class="btn btn-danger" id="signout_button" style="display: none;"><i class="fab fa-google"></i> Sign out</button>
+					<div class="row">
+						<div class="col">
+							<label for ="speedControl"> Voice Speed </label>
+							<select id = "speedControl">
+								<option value="0.75"> Slow</option>
+								<option value="1"> Normal </option>
+								<option value="1.5"> Fast </option>
+							</select>
+						</div>
+					
+						<div class="col">
+							<label for ="voiceControl"> Voice Type</label>
+							<select id = "voiceControl">
+								<option value="0"> Voice Type 1 </option>
+								<option value="1"> Voice Type 2 </option>
+								<option value="2"> Voice Type 3 </option>
+							</select>
+				
+						</div>
+					</div>
+					
                 </div>
-                -->
+                
               </div>
                   <div class="row" style="float: right; margin-right: 20px; margin-top:20px;">
                     <div clas="col" class="microphone" id="mic-on-btn"><i class="fa fa-microphone"></i> "Hey! Press Me" </div>
@@ -127,7 +146,7 @@
                   </div>
                     
                     <button id="btnSendEmail"> Send </button>
-                    <button id="getFocus">Get Focused</button>
+                    
                   </div>
                 </div>
             </div>
