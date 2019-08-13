@@ -67,6 +67,7 @@ var openEmailCommands = "open email";
 
     }
     else if(currentVoiceMode==voiceModes.writer_command){
+      debugger
     for (var i = event.resultIndex; i < event.results.length; ++i) {
       if (event.results[i].isFinal) {
         var command= event.results[i][0].transcript.trim();
@@ -95,12 +96,26 @@ else if(currentVoiceMode==voiceModes.text_entry){
       if (event.results[i].isFinal) {
         var spokenText= event.results[i][0].transcript.trim();
         if (endOfSectionText.includes(spokenText)){
+            bodyText=[]
             currentVoiceMode = voiceModes.writer_command;
             $('#labelMode').text("Command");
         }
         else if (backCommands.includes(spokenText)){
-          var body = bodyText.pop().join(' ');
-          $('#'+activeUIComponent).val();
+          if ($('#'+activeUIComponent).val()!="" && bodyText==[]){
+          debugger
+          //delete last word
+          var content = $('#'+activeUIComponent).val()
+          var lastIndex = content.lastIndexOf(" ");
+
+          content = content.substring(0, lastIndex);
+          $('#'+activeUIComponent).val(content);
+          
+          }
+          else{
+            bodyText.pop();
+          var bodyClipped = bodyText.join(' ')
+          $('#'+activeUIComponent).val(bodyClipped);
+          }
         }
         else if(spokenText=="read read"){
           provideFeedback()

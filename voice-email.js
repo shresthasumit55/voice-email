@@ -199,7 +199,7 @@ function getId(str)
     return str.replace(/[^\d]+/, '');
 }
 function openEmail(id){
-    debugger
+    
     $("#emailList").hide();
     $("#sentScreen").hide();
     $("#trashScreen").hide();
