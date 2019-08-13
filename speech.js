@@ -27,6 +27,7 @@ var openEmailCommands = "open email";
 
 
   recognition.onresult = function (event) {
+    debugger
     if (currentVoiceMode==voiceModes.navigation){
       
         for (var i = event.resultIndex; i < event.results.length; ++i) {
@@ -51,6 +52,10 @@ var openEmailCommands = "open email";
         }
         else if(command=="reply"){
           replyMail()
+        }
+        else if(["forward","forward mail", "forward email"].includes(command)){
+
+          forwardEmail();
         }
         else if(stopReading.includes(command)){
           
@@ -174,6 +179,7 @@ else if(currentVoiceMode==voiceModes.text_entry){
   }
 
   function replyMail(){
+    resetCompose();
     var getActive = $(".active").removeClass('active');
     $("#anchor-compose").addClass("active");
     $("#emailList").hide();
@@ -184,6 +190,24 @@ else if(currentVoiceMode==voiceModes.text_entry){
     findEmail(window.token.replace(/[^\d]+/, ''));
     $("#recipientInput").val(currentEmail.sender);
     $("#subjectInput").val("RE: "+currentEmail.subject);
+    currentVoiceMode=voiceModes.writer_command;
+  }
+
+  function forwardEmail(){
+    resetCompose();
+    var getActive = $(".active").removeClass('active');
+    $("#anchor-compose").addClass("active");
+    $("#emailList").hide();
+    $("#sentScreen").hide();
+    $("#trashScreen").hide();
+    $("#readMail").hide();
+    $("#composeScreen").show();
+    findEmail(window.token.replace(/[^\d]+/, ''));
+    emailBody = "\n----------------------------------------------\n\From: " + currentEmail.sender + "\nTo: me@gmail.com\nSubject: " + currentEmail.subject + "\n";
+    $("#emailBodyArea").val(emailBody + currentEmail.body);
+    $("#subjectInput").val("FW: "+currentEmail.subject);
+    currentVoiceMode=voiceModes.writer_command;
+
   }
   // Run this command when User says "READ MY INPUT"
   function provideFeedback(){ 

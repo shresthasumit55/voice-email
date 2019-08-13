@@ -112,6 +112,7 @@ $(document).ready(function(){
 });
 
 $("#anchor-inbox").click(function () {
+    currentVoiceMode = voiceModes.navigation;
     var getActive = $(".active").removeClass('active');
     $("#anchor-inbox").addClass("active");
     $("#emailList").show();
@@ -162,7 +163,7 @@ $("#anchor-trash").click(function () {
 	speechSynthesis.cancel();
     speakMsg("Currently in to trash.");
 })
-$("#anchor-compose").click(function () {    
+$("#anchor-compose").click(function () {
     var getActive = $(".active").removeClass('active');
     $("#anchor-compose").addClass("active");
     $("#emailList").hide();
@@ -173,16 +174,20 @@ $("#anchor-compose").click(function () {
 	speechSynthesis.cancel();
     speakMsg("Compose a new email.");
 })
+
+function resetCompose(){
+    $("#recipientInput").val("");
+    $("#subjectInput").val("");
+    $("#ccField").val("");
+    $("#bccField").val("");
+    $("#emailBodyArea").val("");
+}
+
 $("#btnSendEmail").click(function () {
     
 	speakMsg("Email Sent");
-	
-	$("#recipientInput").text("");
-	$("#subjectInput").text("");
-	$("#ccField").text("");
-	$("#bccField").text("");
-	$("#emailBodyArea").text("");
-	setTimeout(() => {$("#anchor-inbox").trigger('click');},5000);
+	setTimeout(() => {$("#anchor-inbox").trigger('click');},4000);
+    setTimeout(resetCompose, 4000);    
 	//alert("email sent");
 })
 // Adds "NEW" badge left of an unread email or new email 
@@ -213,7 +218,7 @@ function openEmail(id){
     <p>\ '+singleEmail.body +'\
         <div id="reply" class="col" style:"margin-top:20px;>\
             <button type="button" onClick = "replyMail()" class="btn btn-link"  id = "replyButton'+id+'"><i class="fas fa-reply"></i> Reply </button>\
-            <button type="button" class="btn btn-link" id = "forwardButton'+id+'"> <i class="fas fa-share-square"></i> Forward </button>\
+            <button type="button" onClick = "forwardEmail()" class="btn btn-link" id = "forwardButton'+id+'"> <i class="fas fa-share-square"></i> Forward </button>\
         </div></div></div>';
     $("#readMail").html(emailShow);
     singleEmail.read = true;
