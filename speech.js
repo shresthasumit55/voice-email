@@ -18,6 +18,7 @@ var bodyText=[];
 var numberConversion = {"one":1,"two":2,"too":2, "to":2,"three":3,"four":4}
 
 var openEmailCommands = "open email";
+var focusOutAudio = new Audio('focus-out.mp3');
 
   var recognizing;
   var recognition = new SpeechRecognition();
@@ -103,6 +104,7 @@ else if(currentVoiceMode==voiceModes.text_entry){
         if (endOfSectionText.includes(spokenText)){
             bodyText=[]
             currentVoiceMode = voiceModes.writer_command;
+            focusOutAudio.play();
             $('#labelMode').text("Command");
         }
         else if (backCommands.includes(spokenText)){
