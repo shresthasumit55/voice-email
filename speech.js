@@ -210,6 +210,8 @@ else if(currentVoiceMode==voiceModes.text_entry){
     $("#recipientInput").val(currentEmail.sender);
     $("#subjectInput").val("RE: "+currentEmail.subject);
     currentVoiceMode=voiceModes.writer_command;
+    speechSynthesis.cancel();
+    speakMsg("Replying to"+currentEmail.sender);
   }
 
   function forwardEmail(){
@@ -226,6 +228,8 @@ else if(currentVoiceMode==voiceModes.text_entry){
     $("#emailBodyArea").val(emailBody + currentEmail.body);
     $("#subjectInput").val("FW: "+currentEmail.subject);
     currentVoiceMode=voiceModes.writer_command;
+    speechSynthesis.cancel();
+    speakMsg("Forwarding this email")
 
   }
   // Run this command when User says "READ MY INPUT"

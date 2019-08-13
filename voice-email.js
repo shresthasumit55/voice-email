@@ -166,6 +166,7 @@ $("#anchor-trash").click(function () {
     speakMsg("Currently in to trash.");
 })
 $("#anchor-compose").click(function () {
+    resetCompose()
     var getActive = $(".active").removeClass('active');
     $("#anchor-compose").addClass("active");
     $("#emailList").hide();
