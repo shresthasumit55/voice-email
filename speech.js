@@ -27,13 +27,14 @@ var openEmailCommands = "open email";
 
 
   recognition.onresult = function (event) {
+    //debugger
     if (currentVoiceMode==voiceModes.navigation){
       
         for (var i = event.resultIndex; i < event.results.length; ++i) {
       if (event.results[i].isFinal) {
         var command= event.results[i][0].transcript.trim();
         //command = command.replace(/\s+/g, '');
-
+		console.log(command);
         if (command in navMenuMappings){
 
             $('#'+navMenuMappings[command]).trigger('click');
@@ -59,7 +60,7 @@ var openEmailCommands = "open email";
 		else if (command=="change voice"){
 			changeVoice();
 		}
-		else if (command =="Change speed"){
+		else if (command.toLowerCase()=="change speed"){
 			changeSpeed();
 		}
         else if(stopReading.includes(command)){
@@ -243,7 +244,6 @@ else if(currentVoiceMode==voiceModes.text_entry){
 	speakMsg("Voice Type Changed");
   }
   function changeSpeed(){
-	
 	selectedVoice = parseFloat($("#speedControl").val());
 	newVoice = 0.75;
 	if (selectedVoice == 1){
