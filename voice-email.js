@@ -44,6 +44,8 @@ var emailDetailedList=[{
     "date":"06-13-2019"
   }]
 
+  var audio = new Audio('click-sound.mp3');
+
 mode = 0;
 $("#switch").click(function(){
     if (mode==0){
@@ -229,23 +231,23 @@ function openEmail(id){
 };
 $("#recipientInput").focus(function(){
 	speechSynthesis.cancel();
-    speakMsg("Please provide your sender email here");
+    audio.play()
 });
 $("#subjectInput").focus(function(){
 	speechSynthesis.cancel();
-    speakMsg("Please provide subject of your email");
+    audio.play()
 });
 $("#ccField").focus(function(){
 	speechSynthesis.cancel();
-    speakMsg("Any CC of email goes here");
+    audio.play()
 });
 $("#bccField").focus(function(){
 	speechSynthesis.cancel();
-    speakMsg("Any BCC of email goes here");
+    audio.play()
 });
 $("#emailBodyArea").focus(function(){
 	speechSynthesis.cancel();
-    speakMsg("Email body. Please say your message.");
+    audio.play()
 });
 
 
