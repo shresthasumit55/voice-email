@@ -15,6 +15,9 @@ var previousTranscript=""; // this variables holds the transcript before the las
 var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
 var specialSymbols = {"at at":"@", "comma comma ":",","question question":"?", "pling pling":"!", "dollar dollar":"$"}
 var bodyText=[];
+var numberConversion = {"one":1,"two":2,"too":2, "to":2,"three":3,"four":4}
+
+var openEmailCommands = "open email";
 
   var recognizing;
   var recognition = new SpeechRecognition();
@@ -25,6 +28,7 @@ var bodyText=[];
 
   recognition.onresult = function (event) {
     if (currentVoiceMode==voiceModes.navigation){
+      debugger
         for (var i = event.resultIndex; i < event.results.length; ++i) {
       if (event.results[i].isFinal) {
         var command= event.results[i][0].transcript.trim();
@@ -33,6 +37,12 @@ var bodyText=[];
         if (command in navMenuMappings){
 
             $('#'+navMenuMappings[command]).trigger('click');
+        }
+        else if (command.includes(openEmailCommands)){
+            var lastword = command.split(" ").pop();
+            var emailId = numberConversion[lastword]
+            openEmail('emailId'+emailId)
+            
         }
         else if (readEmailCommands.includes(command)){
           findEmail(window.token.replace(/[^\d]+/, ''));          
@@ -47,7 +57,6 @@ var bodyText=[];
 
     }
     else if(currentVoiceMode==voiceModes.writer_command){
-      debugger
     for (var i = event.resultIndex; i < event.results.length; ++i) {
       if (event.results[i].isFinal) {
         var command= event.results[i][0].transcript.trim();
@@ -56,7 +65,7 @@ var bodyText=[];
           $('#btnSendEmail').trigger('click');
         }
         else if (command in writerMenu){
-            
+            debugger
             currentVoiceMode = voiceModes.text_entry;
             $('#labelMode').text("Text Entry");
             activeUIComponent = writerMenu[command];
@@ -82,6 +91,9 @@ else if(currentVoiceMode==voiceModes.text_entry){
         else if (backCommands.includes(spokenText)){
           var body = bodyText.pop().join(' ');
           $('#'+activeUIComponent).val();
+        }
+        else if(spokenText=="read read"){
+          provideFeedback()
         }
         else {
         var text = $('#'+activeUIComponent).val();

@@ -126,8 +126,8 @@ $("#anchor-inbox").click(function () {
         emailListHtml+='<div class="row email-each '; 
         emailListHtml += (element.read)?'"': 'unread"';
        
-        emailListHtml += 'id="emailId'+element.id+'" onClick = "readEmail(this.id)">';
-        emailListHtml += '<div class="col width-5"><span class="badge badge-danger new-email-badge">New</span></div>';
+        emailListHtml += 'id="emailId'+element.id+'" onClick = "openEmail(this.id)">';
+        emailListHtml += '&nbsp;'+element.id+'<div class="col width-5"><span class="badge badge-danger new-email-badge">New</span></div>';
         emailListHtml +='<div class="col width-30 align-center" id="email-from"> '+element.sender+'</div>\
         <div class="col width-40 align-center" id="email-subject">'+element.subject+' </div>\
         <div class="col width-20" id="email-date">'+element.date+'</div>\
@@ -184,8 +184,8 @@ function getId(str)
 {
     return str.replace(/[^\d]+/, '');
 }
-function readEmail(id){
-    
+function openEmail(id){
+    debugger
     $("#emailList").hide();
     $("#sentScreen").hide();
     $("#trashScreen").hide();
