@@ -114,7 +114,7 @@ $(document).ready(function(){
 });
 
 $("#anchor-inbox").click(function () {
-    currentVoiceMode = voiceModes.navigation;
+    //currentVoiceMode = voiceModes.navigation;
     var getActive = $(".active").removeClass('active');
     $("#anchor-inbox").addClass("active");
     $("#emailList").show();

@@ -57,9 +57,15 @@ var openEmailCommands = "open email";
 
           forwardEmail();
         }
+		else if (command=="change voice"){
+			changeVoice();
+		}
+		else if (command =="Change speed"){
+			changeSpeed();
+		}
         else if(stopReading.includes(command)){
           
-          cancelSpeech()
+          cancelSpeech();
         }
 
       }
@@ -228,4 +234,27 @@ else if(currentVoiceMode==voiceModes.text_entry){
   function provideFeedback(){ 
     var inputText =  $(":focus").val();
     speakMsg(inputText);
+  }
+  
+  
+  //Voice Type changes 
+  function changeVoice(){
+	voiceTypes = [0,1,2];
+	selectedVoice = parseInt($("#voiceControl").val());
+	newVoice =  (selectedVoice + 1) % 3;
+	$("#voiceControl").val(newVoice);
+	speakMsg("Voice Type Changed");
+  }
+  function changeSpeed(){
+	
+	selectedVoice = parseFloat($("#speedControl").val());
+	newVoice = 0.75;
+	if (selectedVoice == 1){
+		newVoice = 1.5;
+	}
+	else if (selectedVoice == 0.75){
+		newVoice = 1;
+	}
+	$("#speedControl").val(newVoice);
+	speakMsg("Voice speeed changed");
   }
