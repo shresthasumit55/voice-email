@@ -218,7 +218,7 @@ else if(currentVoiceMode==voiceModes.text_entry){
     $("#subjectInput").val("RE: "+currentEmail.subject);
     currentVoiceMode=voiceModes.writer_command;
     speechSynthesis.cancel();
-    speakMsg("Replying to"+currentEmail.sender);
+    speakMsg("Replying to "+currentEmail.sender);
   }
 
   function forwardEmail(){
