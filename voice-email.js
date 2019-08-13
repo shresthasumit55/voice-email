@@ -110,7 +110,7 @@ $(document).ready(function(){
     $("#trashScreen").hide();
     $("#composeScreen").hide();
     $("#readMail").hide();
-
+    $("#alert").hide();
 });
 
 $("#anchor-inbox").click(function () {
@@ -188,11 +188,11 @@ function resetCompose(){
 
 $("#btnSendEmail").click(function () {
 
-    alert("email sent")
+    $("#alert").show();
 	speakMsg("Email Sent");
-
-	setTimeout(() => {$("#anchor-inbox").trigger('click');},4000);
-    setTimeout(resetCompose, 4000);    
+    setTimeout(() => {$("#alert").hide();}, 6000);
+	setTimeout(() => {$("#anchor-inbox").trigger('click');},2500);
+    setTimeout(resetCompose, 3000);    
 	
 	//alert("email sent");
 
