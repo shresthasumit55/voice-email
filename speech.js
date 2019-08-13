@@ -28,7 +28,7 @@ var openEmailCommands = "open email";
 
   recognition.onresult = function (event) {
     if (currentVoiceMode==voiceModes.navigation){
-      debugger
+      
         for (var i = event.resultIndex; i < event.results.length; ++i) {
       if (event.results[i].isFinal) {
         var command= event.results[i][0].transcript.trim();
@@ -45,11 +45,16 @@ var openEmailCommands = "open email";
             
         }
         else if (readEmailCommands.includes(command)){
+          
           findEmail(window.token.replace(/[^\d]+/, ''));          
           narrateEmail(currentEmail)
         }
         else if(command=="reply"){
           replyMail()
+        }
+        else if(stopReading.includes(command)){
+          
+          cancelSpeech()
         }
 
       }
@@ -65,7 +70,7 @@ var openEmailCommands = "open email";
           $('#btnSendEmail').trigger('click');
         }
         else if (command in writerMenu){
-            debugger
+            
             currentVoiceMode = voiceModes.text_entry;
             $('#labelMode').text("Text Entry");
             activeUIComponent = writerMenu[command];
@@ -80,7 +85,7 @@ var openEmailCommands = "open email";
 }
 
 else if(currentVoiceMode==voiceModes.text_entry){
-  debugger
+  
     for (var i = event.resultIndex; i < event.results.length; ++i) {
       if (event.results[i].isFinal) {
         var spokenText= event.results[i][0].transcript.trim();
