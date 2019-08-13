@@ -5,7 +5,7 @@ var writerMenu = {"enter recipient":"recipientInput","enter receiver":"recipient
 var sendCommand = ["send email","send mail", "send the mail", "send the email", "sent email", "sent mail"]
 var currentVoiceMode = voiceModes.navigation;
 var activeUIComponent="";
-var endOfSectionText = ["over over","out out"];
+var endOfSectionText = ["over over","out out","uber uber","over over over"];
 var readEmailCommands = ["read","read email", "read the email", "read mail", "read the mail"];
 var backCommands = ["back back"];
 var readInput = ["read input"];
@@ -27,7 +27,6 @@ var openEmailCommands = "open email";
 
 
   recognition.onresult = function (event) {
-    debugger
     if (currentVoiceMode==voiceModes.navigation){
       
         for (var i = event.resultIndex; i < event.results.length; ++i) {
@@ -73,12 +72,11 @@ var openEmailCommands = "open email";
 
     }
     else if(currentVoiceMode==voiceModes.writer_command){
-      debugger
     for (var i = event.resultIndex; i < event.results.length; ++i) {
       if (event.results[i].isFinal) {
         var command= event.results[i][0].transcript.trim();
         command = command.toLowerCase();
-        if (sendCommand.includes[command]){
+        if (sendCommand.includes(command)){
           $('#btnSendEmail').trigger('click');
         }
         else if (command in writerMenu){
@@ -108,7 +106,6 @@ else if(currentVoiceMode==voiceModes.text_entry){
         }
         else if (backCommands.includes(spokenText)){
           if ($('#'+activeUIComponent).val()!="" && bodyText==[]){
-          debugger
           //delete last word
           var content = $('#'+activeUIComponent).val()
           var lastIndex = content.lastIndexOf(" ");

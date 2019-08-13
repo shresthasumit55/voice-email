@@ -186,7 +186,8 @@ function resetCompose(){
 }
 
 $("#btnSendEmail").click(function () {
-    
+
+    alert("email sent")
 	speakMsg("Email Sent");
 
 	setTimeout(() => {$("#anchor-inbox").trigger('click');},4000);
