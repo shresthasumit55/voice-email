@@ -45,7 +45,7 @@ http://soundbible.com/
 
 Given below are the list of keywords that can be used to perform email-based actions through voice commands.
  
-** 1. Composing a New email: “COMPOSE” **
+**1. Composing a New email: “COMPOSE”
 
 The user needs to say “OVER OVER” or “OUT OUT” after each of the below command is entered and the user wants to move to the next action.
 
@@ -57,13 +57,14 @@ The user needs to say “OVER OVER” or “OUT OUT” after each of the below c
 * Reading the message or the current entry position: “READ READ”
 * Sending the current email: “SEND EMAIL” or “SEND MAIL”
 
-** 2. Inbox **
+**2. Inbox
 * To go to Inbox: INBOX
 * Opening a particular Email: “OPEN EMAIL 1”
 * Reading the open Email: “READ MAIL” or “READ EMAIL” or “READ”
 * Stop reading: “STOP”
 
-** 3. Actions under currently opened email **
+**3. Actions under currently opened email
+
 * Forwarding the current email: “FORWARD”
 * Replying to the current email: “REPLY”
 * Stop reading: “STOP”
