@@ -136,7 +136,7 @@ $("#anchor-inbox").click(function () {
     $( "#emailList" ).html( emailListHtml );
     var noEmail = $(".new-email-badge").hide();
     addNew();
-	//speechSynthesis.cancel();
+	speechSynthesis.cancel();
     speakMsg(" Currently in Inbox");
 })
 
@@ -148,7 +148,7 @@ $("#anchor-sent").click(function () {
     $("#trashScreen").hide();
     $("#readMail").hide();
     $("#composeScreen").hide();
-	//speechSynthesis.cancel();
+	speechSynthesis.cancel();
     speakMsg("Currently in Sent Emails");
 })
 $("#anchor-trash").click(function () {
@@ -159,7 +159,7 @@ $("#anchor-trash").click(function () {
     $("#trashScreen").show();
     $("#readMail").hide();
     $("#composeScreen").hide();
-	//speechSynthesis.cancel();
+	speechSynthesis.cancel();
     speakMsg("Currently in to trash.");
 })
 $("#anchor-compose").click(function () {    
@@ -170,11 +170,20 @@ $("#anchor-compose").click(function () {
     $("#trashScreen").hide();
     $("#readMail").hide();
     $("#composeScreen").show();
-	//speechSynthesis.cancel();
+	speechSynthesis.cancel();
     speakMsg("Compose a new email.");
 })
 $("#btnSendEmail").click(function () {
-    alert("email sent");
+    
+	speakMsg("Email Sent");
+	
+	$("#recipientInput").text("");
+	$("#subjectInput").text("");
+	$("#ccField").text("");
+	$("#bccField").text("");
+	$("#emailBodyArea").text("");
+	setTimeout(() => {$("#anchor-inbox").trigger('click');},5000);
+	//alert("email sent");
 })
 // Adds "NEW" badge left of an unread email or new email 
 function addNew(){
