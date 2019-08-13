@@ -15,7 +15,7 @@ var previousTranscript=""; // this variables holds the transcript before the las
 var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
 var specialSymbols = {"at at":"@", "comma comma ":",","question question":"?", "pling pling":"!", "dollar dollar":"$"}
 var bodyText=[];
-var numberConversion = {"one":1,"two":2,"too":2, "to":2,"three":3,"four":4}
+var numberConversion = {"one":1,"two":2,"too":2, "to":2,"three":3,"four":4, "3":3,"1":1,"2":2}
 
 var openEmailCommands = "open email";
 var focusOutAudio = new Audio('focus-out.mp3');
@@ -43,7 +43,9 @@ var focusOutAudio = new Audio('focus-out.mp3');
         else if (command.includes(openEmailCommands)){
             var lastword = command.split(" ").pop();
             var emailId = numberConversion[lastword]
-            openEmail('emailId'+emailId)
+            var emailIdList = emailDetailedList.map(item=>item.id)
+            if (emailIdList.includes(emailId))
+              openEmail('emailId'+emailId)
             
         }
         else if (readEmailCommands.includes(command)){
@@ -127,6 +129,9 @@ else if(currentVoiceMode==voiceModes.text_entry){
           provideFeedback()
         }
         else {
+        if (specialSymbols.includes(spokenText)){
+          spokenText = specialSymbols[spokenText]
+        }
         var text = $('#'+activeUIComponent).val();
         bodyText.push(spokenText)
         previousTranscript = text;

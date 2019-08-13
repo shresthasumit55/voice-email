@@ -189,10 +189,13 @@ function resetCompose(){
 $("#btnSendEmail").click(function () {
 
     $("#alert").show();
-	speakMsg("Email Sent");
+    speakMsg("Email Sent");
+    currentVoiceMode = voiceModes.navigation;
     setTimeout(() => {$("#alert").hide();}, 6000);
 	setTimeout(() => {$("#anchor-inbox").trigger('click');},2500);
-    setTimeout(resetCompose, 3000);    
+    setTimeout(resetCompose, 3000);
+    currentVoiceMode = voiceModes.navigation;
+
 	
 	//alert("email sent");
 
