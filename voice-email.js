@@ -186,9 +186,12 @@ function resetCompose(){
 $("#btnSendEmail").click(function () {
     
 	speakMsg("Email Sent");
+
 	setTimeout(() => {$("#anchor-inbox").trigger('click');},4000);
     setTimeout(resetCompose, 4000);    
+	
 	//alert("email sent");
+
 })
 // Adds "NEW" badge left of an unread email or new email 
 function addNew(){
