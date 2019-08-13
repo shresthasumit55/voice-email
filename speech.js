@@ -129,7 +129,7 @@ else if(currentVoiceMode==voiceModes.text_entry){
           provideFeedback()
         }
         else {
-        if (specialSymbols.includes(spokenText)){
+        if (spokenText in specialSymbols){
           spokenText = specialSymbols[spokenText]
         }
         var text = $('#'+activeUIComponent).val();
